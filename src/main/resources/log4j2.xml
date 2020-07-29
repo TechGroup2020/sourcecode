@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+	<Properties>
+		<Property name="LOG_DIR">F:\logs</Property>
+	</Properties>
+	<Appenders>
+		<Console name="ConsoleAppender" target="SYSTEM_OUT">
+			<PatternLayout pattern="%-5p: %c - %m%n" />
+		</Console>
+		<RollingFile name="rollingFile" immediateFlush="true" fileName="${LOG_DIR}\application.log"
+			filePattern="${LOG_DIR}\application-%i.log">
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} |[%t]| %-5p | %c{1} | %L - %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="5 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="org.springframework" level="info" includeLocation="true" />
+		<Logger name="com.perfumaa.rest" level="debug" includeLocation="true" />
+		<Logger name="org.springframework.data.mongodb.core.MongoTemplate" level="debug" includeLocation="true" />
+		<Root level="info" includeLocation="true">
+			<AppenderRef ref="rollingFile" />
+			<AppenderRef ref="ConsoleAppender" />
+		</Root>
+	</Loggers>
+</Configuration>
+
