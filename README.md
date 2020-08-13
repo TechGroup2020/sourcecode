@@ -1,1 +1,1 @@
-# gomatha-sample-pack-
+# gomatha-sample-pack
